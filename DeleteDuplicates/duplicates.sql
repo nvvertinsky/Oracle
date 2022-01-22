@@ -6,7 +6,7 @@ insert into persn (persn_id, first_name, last_name) values (3, 'Vasya', 'Vertins
 insert into persn (persn_id, first_name, last_name) values (4, 'Vladimir', 'Makarov');
 insert into persn (persn_id, first_name, last_name) values (5, 'Max', 'Slepchenkov');
 
--- 01. Сколько всего дублей first_name и last_name
+-- 01. РЎРєРѕР»СЊРєРѕ РІСЃРµРіРѕ РґСѓР±Р»РµР№ first_name Рё last_name
 select first_name,
 	     last_name,
 	     count(*) as cnt
@@ -15,14 +15,14 @@ select first_name,
           last_name
 having count(*) > 1
 
--- 02. Выбрать все дублирующиеся last_name и first_name
+-- 02. Р’С‹Р±СЂР°С‚СЊ РІСЃРµ РґСѓР±Р»РёСЂСѓСЋС‰РёРµСЃСЏ last_name Рё first_name
 select *
   from persn
  where last_name in (select last_name from persn group by last_name having count(*) > 1)
    and first_name in (select first_name from persn group by first_name having count(*) > 1)
    
 
--- 03. Выбрать все дубликаты first_name и last_name кроме первого 
+-- 03. Р’С‹Р±СЂР°С‚СЊ РІСЃРµ РґСѓР±Р»РёРєР°С‚С‹ first_name Рё last_name РєСЂРѕРјРµ РїРµСЂРІРѕРіРѕ 
 select persn.*
   from persn
   left outer join (select min(persn_id) as persn_id,
@@ -32,7 +32,7 @@ select persn.*
                     group by first_name, last_name) tmp on persn.persn_id = tmp.persn_id
  where tmp.persn_id is null
 
--- 04. Удалить дубликаты, кроме первого
+-- 04. РЈРґР°Р»РёС‚СЊ РґСѓР±Р»РёРєР°С‚С‹, РєСЂРѕРјРµ РїРµСЂРІРѕРіРѕ
 delete from persn
  where persn.persn_id in (select persn.persn_id
                             from persn
