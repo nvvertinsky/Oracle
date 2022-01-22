@@ -1,0 +1,7 @@
+create table DEPARTMENTS
+(
+  DEPARTMENT_ID   NUMBER(4) not null,
+  DEPARTMENT_NAME VARCHAR2(30) not null,
+  MANAGER_ID      NUMBER(6),
+  LOCATION_ID     NUMBER(4)
+);

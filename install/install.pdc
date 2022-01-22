@@ -1,0 +1,71 @@
+set scan off;
+
+prompt >>> COUNTRIES.sql;
+prompt ;
+@COUNTRIES.sql;
+
+prompt >>> DEPARTMENTS.sql;
+prompt ;
+@DEPARTMENTS.sql;
+
+prompt >>> EMPLOYEES.sql;
+prompt ;
+@EMPLOYEES.sql;
+
+prompt >>> JOB_GRADES.sql;
+prompt ;
+@JOB_GRADES.sql;
+
+prompt >>> JOB_HISTORY.sql;
+prompt ;
+@JOB_HISTORY.sql;
+
+prompt >>> JOBS.sql;
+prompt ;
+@JOBS.sql;
+
+prompt >>> LOCATIONS.sql;
+prompt ;
+@LOCATIONS.sql;
+
+prompt >>> REGIONS.sql;
+prompt ;
+@REGIONS.sql;
+
+prompt >>> insert_into_countries.sql;
+prompt ;
+@insert_into_countries.sql;
+
+prompt >>> insert_into_departments.sql;
+prompt ;
+@insert_into_departments.sql;
+
+prompt >>> insert_into_employees.sql;
+prompt ;
+@insert_into_employees.sql;
+
+prompt >>> insert_into_job_grades.sql;
+prompt ;
+@insert_into_job_grades.sql;
+
+prompt >>> insert_into_job_history.sql;
+prompt ;
+@insert_into_job_history.sql;
+
+prompt >>> insert_into_jobs.sql;
+prompt ;
+@insert_into_jobs.sql;
+
+prompt >>> insert_into_locations.sql;
+prompt ;
+@insert_into_locations.sql;
+
+prompt >>> insert_into_regions.sql;
+prompt ;
+@insert_into_regions.sql;
+
+prompt >>> hr_data_vol2.sql;
+prompt ;
+@HR_DATA_vol2.sql;
+
+prompt >>> Script has reached the end of the file;
