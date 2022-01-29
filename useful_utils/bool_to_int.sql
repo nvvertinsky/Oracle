@@ -1,0 +1,1 @@
+select * from dual where 1 = sys.diutil.bool_to_int(true);
