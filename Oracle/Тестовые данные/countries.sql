@@ -1,0 +1,6 @@
+create table COUNTRIES
+(
+  COUNTRY_ID   CHAR(2) not null,
+  COUNTRY_NAME VARCHAR2(40),
+  REGION_ID    NUMBER
+);

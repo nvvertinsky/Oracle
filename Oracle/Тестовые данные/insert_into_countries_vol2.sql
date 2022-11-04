@@ -1,0 +1,28 @@
+truncate table countries;
+insert into countries values ('AR', 'ARGENTINA', 2);
+insert into countries values ('AU', 'AUSTRALIA', 3);
+insert into countries values ('BE', 'BELGIUM', 1);
+insert into countries values ('BR', 'BRAZIL', 2);
+insert into countries values ('CA', 'CANADA', 2);
+insert into countries values ('CH', 'SWITZERLAND', 1);
+insert into countries values ('CN', 'CHINA', 3);
+insert into countries values ('DE', 'GERMANY', 1);
+insert into countries values ('DK', 'DENMARK', 1);
+insert into countries values ('EG', 'EGYPT', 4);
+insert into countries values ('FR', 'FRANCE', 1);
+insert into countries values ('HK', 'HONKONG', 3);
+insert into countries values ('IL', 'ISRAEL', 4);
+insert into countries values ('IN', 'INDIA', 3);
+insert into countries values ('IT', 'ITALY', 1);
+insert into countries values ('JP', 'JAPAN', 3);
+insert into countries values ('KW', 'KUWAIT', 4);
+insert into countries values ('MX', 'MEXICO', 2);
+insert into countries values ('NG', 'NIGERIA', 4);
+insert into countries values ('NL', 'NETHERLANDS', 1);
+insert into countries values ('SG', 'SINGAPORE', 3);
+insert into countries values ('UK', 'UNITED KINGDOM', 1);
+insert into countries values ('US', 'UNITED STATES OF AMERICA', 2);
+insert into countries values ('ZM', 'ZAMBIA', 4);
+insert into countries values ('ZW', 'ZIMBABWE', 4);
+commit;
+

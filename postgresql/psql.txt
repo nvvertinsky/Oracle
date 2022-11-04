@@ -1,0 +1,8 @@
+1. Изменить кодировку консоли Windows: chcp 1251
+2. Заходим на сервер БД: ssh user@ip
+3. Вход в БД: psql -d databaseName -U userName -h ip -p port
+4. Выход из БД: \q
+
+Роли: \du
+Таблицы: \dt
+

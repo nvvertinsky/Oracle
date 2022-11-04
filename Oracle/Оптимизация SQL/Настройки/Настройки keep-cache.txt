@@ -1,0 +1,3 @@
+select * from v$parameter where name like '%keep%';
+alter system set db_keep_cache_size=50m; -- выделить 50 мб в SGA для keep_cache
+alter table base storage (buffer_pool keep); -- блоки таблицы поместить в keep_cache

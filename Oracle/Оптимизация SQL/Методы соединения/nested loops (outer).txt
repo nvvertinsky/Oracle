@@ -1,0 +1,33 @@
+Внешнее соединения вложенным циклом. nested loops (outer)
+
+
+Пример работы:
+
+  select empno,
+         dname
+    from emp,
+         dept
+   where emp.deptno(+) = dept.deptno;
+ 
+В отличии от примера с nested loops, ведущей таблицей стала dept
+
+Псевдокод:
+  for x in (select * from dept)
+  loop
+    found_record = false;
+	
+	for y in (select * from emp where emp.deptno = x.deptno)
+	loop
+	  found_record = true;
+	  output joined record;
+	end loop;
+    
+	if not found_record then
+	  output a record with null values for emp columns;
+	end if;
+  end loop;
+  
+  1. Читаем первый блок таблицы dept.
+  2. Берем первую строку из блока и используем ее значение deptno для поиска в таблице emp
+  3. Читаем индексные блоки таблицы emp. Находим нужный лист с rowid строки в dept. Если ничего не нашли, то выводим строки из emp с null значениями
+  4. Читаем блок и строку по rowid в таблице dept.

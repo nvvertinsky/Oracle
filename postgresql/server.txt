@@ -1,0 +1,7 @@
+sudo systemctl status postgresql
+sudo systemctl start postgresql
+
+Сервер: /opt/pgserver
+БД: /u01/data
+
+PGTune: https://pgtune.leopard.in.ua/
