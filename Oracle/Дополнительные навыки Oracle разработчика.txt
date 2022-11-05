@@ -1,4 +1,5 @@
 Разработчик Oracle:
+
 - ETL (Informatica, IBM DataStage, Apache Airflow, SAS DI) = 52
 - PostgreSQL = 23
 - АБС (ЦФТ) (PL+) = 20
