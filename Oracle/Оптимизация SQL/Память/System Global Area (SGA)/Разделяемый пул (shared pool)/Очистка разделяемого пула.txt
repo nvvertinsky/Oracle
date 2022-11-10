@@ -1,1 +1,1 @@
-alter system flush shared pool;
+alter system flush shared_pool;
