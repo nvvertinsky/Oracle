@@ -1,0 +1,14 @@
+Направления: 
+- Разработчик Oracle (OLTP):
+  - Java: 11
+  - Postgresql: 9
+  - APEX (JS): 8
+  - Informatica, Oracle Golden Gate: 6
+  - Hadoop (HDFS, Hive, Spark, Impala, HBase, Cassandra) = 7
+  - GreenPlum
+  - python: 2
+  - NoSQL: 1
+  - MySQL: 1
+- Разработчик ETL (DWH)
+- Разработчик OeBS
+- Разработчик ЦФТ
