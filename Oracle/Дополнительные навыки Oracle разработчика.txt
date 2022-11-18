@@ -7,11 +7,11 @@
 - APEX (HTML, CSS, JavaScript ) = 11
 
 - Delphi = 10
-- Hadoop (HDFS, Hive, Spark, Impala, HBase, Cassandra) = 7
 - BI = 10
 - MS SQL = 9
 - GreenPlum = 9
 - Python = 8
+- Hadoop (HDFS, Hive, Spark, Impala, HBase, Cassandra) = 7
 - Oracle Goldengate = 6
 - Unix shell/bash = 6
 - Teradata = 5
@@ -33,7 +33,8 @@
 - Oracle HFM и FDM (FDMEE) = 1
 - RabbitMQ / Artemis = 1
 
-Разработчик SQL:
-Oracle DBA:
-Разработчик DWH:
-Разработчик OeBS:
+
+Направления: 
+- Разработчик Oracle (OLTP)
+- Разработчик ETL (DWH)
+- Разработчик OeBS
