@@ -14,7 +14,7 @@ create table hash_tab(
   sernum varchar2(100),
   state_code varchar2(10)
 )
-partition by hash (order_id) 
+partition by hash (order_id) -- Должен быть столбец который дает уникальное значение, ну или максимальное возможное кол-во уникальных значений.
 (partition p1, partition p2, partition p3, partition p4);
 
 -- вставляем записи
