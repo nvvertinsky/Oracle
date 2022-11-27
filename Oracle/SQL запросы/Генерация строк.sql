@@ -7,4 +7,4 @@ with r (n) as (select 1 n from dual
                select n + 1 from r where n < 10
               )
 select *
-  from r
+  from r;

@@ -1,10 +1,14 @@
  select s.employee_id,
         lpad(' ', (level - 1/*Для корня будет не нужны отступы*/) * 5, ' ') || s.first_name || chr(32) || s.last_name nm,
         sys_connect_by_path(s.first_name || chr(32) || s.last_name, '/') path,
+        CONNECT_BY_ISLEAF,
+        prior s.last_name parent,
+        CONNECT_BY_ROOT s.last_name root,
         level
    from employees s
 connect by prior employee_id = manager_id
-  start with s.manager_id is null;
+  start with s.manager_id is null
+  order siblings by s.first_name;
   
 /*
 start with s.manager_id is null - начинаем цикл с Директора
@@ -12,19 +16,52 @@ start with s.manager_id is null - начинаем цикл с Директор�
 prior - Оракл находит первую запись, удовлетворяющую условию в START WITH. Затем нужно искать следующую запись. prior employee_id говорит о том, что нужно двигаться в сторону подчиненного. То есть в сторону потомков.
 
 level - уровень вложенности. Для директора 1, для его подчиненного 2, для его подчиненного 3 итд
+
+SIBLINGS - сортировка в рамках в пределах одного уровня (level) 
+
+CONNECT_BY_ISLEAF - Если есть потомки – проставится 0. Иначе 1.
+
+CONNECT_BY_ROOT - ссылается на корневую запись, т.е. на самую первую в выборке.
 */
   
 /*
 1	100	Steven King	/Steven King	1
-2	101	     Neena Kochhar	/Steven King/Neena Kochhar	2
-3	108	          Nancy Greenberg	/Steven King/Neena Kochhar/Nancy Greenberg	3
-4	109	               Daniel Faviet	/Steven King/Neena Kochhar/Nancy Greenberg/Daniel Faviet	4
-5	110	               John Chen	/Steven King/Neena Kochhar/Nancy Greenberg/John Chen	4
-6	111	               Ismael Sciarra	/Steven King/Neena Kochhar/Nancy Greenberg/Ismael Sciarra	4
-7	112	               Jose Manuel Urman	/Steven King/Neena Kochhar/Nancy Greenberg/Jose Manuel Urman	4
-8	113	               Luis Popp	/Steven King/Neena Kochhar/Nancy Greenberg/Luis Popp	4
+2	121	     Adam Fripp	/Steven King/Adam Fripp	2
+3	185	          Alexis Bull	/Steven King/Adam Fripp/Alexis Bull	3
+4	187	          Anthony Cabrio	/Steven King/Adam Fripp/Anthony Cabrio	3
+5	131	          James Marlow	/Steven King/Adam Fripp/James Marlow	3
+6	186	          Julia Dellinger	/Steven King/Adam Fripp/Julia Dellinger	3
+7	129	          Laura Bissot	/Steven King/Adam Fripp/Laura Bissot	3
+8	130	          Mozhe Atkinson	/Steven King/Adam Fripp/Mozhe Atkinson	3
+9	184	          Nandita Sarchand	/Steven King/Adam Fripp/Nandita Sarchand	3
+10	132	          TJ Olson	/Steven King/Adam Fripp/TJ Olson	3
+
 
 */
+
+-- Те же самые самые запросы, только с рекурсивным WITH
+with emp_data(employee_id, nm, manager_idm, lvl) as (select emp.employee_id,
+                                                            emp.first_name || chr(32) || emp.last_name nm,
+                                                            emp.manager_id,
+                                                            1 lvl
+                                                       from employees emp
+                                                      where emp.manager_id is null
+                                                     union all
+                                                     select emp.employee_id,
+                                                            emp.first_name || chr(32) || emp.last_name nm,
+                                                            emp.manager_id,
+                                                            ed.lvl + 1 lvl
+                                                       from employees emp,
+                                                            emp_data ed
+                                                      where emp.manager_id = ed.employee_id)
+search depth first by nm set order_by /*Аналог siblings при connect by */
+select employee_id, 
+       lpad(' ', (lvl - 1/*Для корня будет не нужны отступы*/) * 5, ' ') || nm, 
+       manager_idm, 
+       lvl
+  from emp_data
+ order by order_by;
+
 
 
 -- 01. Стартуем с записи 113.
