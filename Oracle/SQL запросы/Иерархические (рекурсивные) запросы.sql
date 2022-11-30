@@ -80,3 +80,15 @@ connect by employee_id = prior manager_id
 */
 
 
+-- Выявляем петли: 
+ with ccle as (select 1 c_id, 2 next_id from dual
+               union all
+               select 2 c_id, 3 next_id from dual
+               union all
+               select 3 c_id, 1 next_id from dual)
+ select ccle.c_id,
+        ccle.next_id,
+        connect_by_iscycle as cycl -- 0 - норм строка, 1 - строка которая приводит к зацикливанию
+   from ccle
+connect by nocycle prior ccle.next_id = ccle.c_id
+  start with ccle.c_id = 1
