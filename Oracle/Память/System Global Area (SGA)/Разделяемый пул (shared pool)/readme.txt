@@ -1,2 +1,3 @@
+Здесь находятся: 
 select * from v$sql;
 select * from v$sql_plan;
