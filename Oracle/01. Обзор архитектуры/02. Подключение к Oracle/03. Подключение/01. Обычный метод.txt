@@ -1,30 +1,8 @@
 $ sqlplus scott/tiger@ora12cr1
 
--- ora12cr1 - это имя сервиса. Утилита sqlplus ищет файл tnsnames.ora по пути который указан в переменной окружения TNS_ADMIN. В этом файле для сервиса ora12cr1 указана подробная строка подключения.
+-- ora12cr1 - это алиас в файле TNSNames.ora. Утилита sqlplus ищет файл tnsnames.ora по пути который указан в переменной окружения TNS_ADMIN. В этом файле для сервиса ora12cr1 указана подробная строка подключения. Если переменной TNS_ADMIN не будет, то ищем в папке ORACLE_HOME/network/admin
 
 -- Пример файла tnsnames.ora:
-# Every line that begins with # is a comment line
-#
-# Create Oracle net service names, or aliases, for each database server 
-# you need to connect to.
-#
-# TNSNames.ora sample entry
-#
-# alias =
-#  (DESCRIPTION =
-#    (ADDRESS = (PROTOCOL = TCP)(HOST = myserver.mycompany.com)(PORT = 1521))
-#    (CONNECT_DATA =
-#      (SERVER = DEDICATED)
-#      (SERVICE_NAME = orcl)
-#    )
-#  )
-#
-# You can modify the entry below for your own database.
-# <data source alias> = Name to use in the connection string Data Source
-# <hostname or IP> = name or IP of the database server machine
-# <port> = database server machine port to use
-# <database service name> = name of the database service on the server
-
 ORA12CR1 =
   (DESCRIPTION =
     (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.1.1)(PORT = 1521))
