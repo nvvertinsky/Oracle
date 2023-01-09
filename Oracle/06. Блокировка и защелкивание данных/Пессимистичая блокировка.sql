@@ -25,4 +25,46 @@ update emp
  where empno = 7934;
 commit;
  
+
+/*Еще пример блокировки:
+БД, в принципе, многосессионная среда. Это API для работы с отдельной сущностью. Подобные обертки в основном реализуются не в DWH, в котором работа с данными выполняется в чуть более свободном режиме.
+Соответственно, могут возникать ситуации, когда с одной и той же сущностью работают более чем 1 сессия.
+Если совсем на пальцах: между тем, когда мы считали статус платежа (select status) и тем, когда мы совершаем update payment, статус мог измениться. В многосессионной среде так и будет. Разруливаются подобные проблемы - блокировками.
+
+Первый вариант: добавить for update с опциями (https://t.me/oracle_dbd/47), которые соответствуют бизнес-задаче.
+select status …  for update с опциями;
+
+Второй вариант: проверять в update статус. Если строка заблокирована, то выполнение повиснет до освобождения блокировки.
+
+
+*/
+
+procedure fail_payment(p_payment_id payment.payment_id%type
+                      ,p_reason   payment.status_change_reason%type)
+is
+  v_status               payment.status%type;
+  e_status_is_not_active exception;
+begin
  
+  select status
+    into v_status
+    from payment
+   where payment_id = p_payment_id;
+ 
+  if v_status != c_active then
+    raise e_status_is_not_active;
+  end if;
+ 
+  update payment
+     set status               = c_error
+        ,status_change_reason = p_reason
+   where payment_id = p_payment_id;
+ 
+exception
+  when e_status_is_not_active then
+     raise_application_error(c_err_code_status_is_not_active, 'Платеж не активный');
+                   
+  when no_data_found then
+     raise_application_error(c_err_code_payment_is_not_found, 'Платеж не найден');    
+end;
+/
