@@ -9,3 +9,15 @@
 
 
 */
+
+create table lostupdate (val number(12));
+insert into lostupdate (val) values (0);
+
+-- Сессия 1
+update lostupdate set val = 1 where val = 0;
+
+-- Сессия 2 
+
+
+
+
