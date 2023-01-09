@@ -17,7 +17,13 @@ insert into lostupdate (val) values (0);
 update lostupdate set val = 1 where val = 0;
 
 -- Сессия 2 
+update lostupdate set val = 2 where val = 0; -- update будет ожидать, когда завершиться транзакция в сессии 1
 
+-- Сессия 1
+commit;
+
+-- Сессия 2
+commit;
 
 
 
