@@ -9,4 +9,4 @@ insert into tst (id, val) values (3, 'tstval');
 select val from tst where val = 'tstval';
 /* 1 rows */
 
--- Если бы уровень транзакции был repeatable read, то тразакция 1 не нашла ни одной строки
+-- Если бы уровень транзакции был repeatable read или Serializable, то тразакция 1 не нашла ни одной строки
