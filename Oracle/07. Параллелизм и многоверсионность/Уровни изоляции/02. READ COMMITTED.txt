@@ -1,3 +1,6 @@
 Характеристики:
   - Может читать только те данные которые зафиксированы
   - По умолчанию в Oracle
+
+Команда: 
+alter session set transaction read committed;
