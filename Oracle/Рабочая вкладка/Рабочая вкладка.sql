@@ -1,5 +1,6 @@
 dbms_lob
-
+x1c_i1054
+us_tr
 
 
 select * from dba_source c where lower(c.text) like lower('%test%')
@@ -69,3 +70,17 @@ select a.owner,
  order by owner, 
           object_type, 
           object_name;
+
+select v1.index_name,
+       v1.program_args
+  from (select ix.index_name,
+               listagg(ixcol.COLUMN_NAME, ', ') within group (order by ixcol.COLUMN_NAME) program_args
+          from dba_indexes ix,
+               dba_ind_columns ixcol
+         where ix.table_name = 'TABLE_NAME'
+           and ixcol.INDEX_NAME = ix.index_name
+         group by ix.index_name
+         order by ix.index_name) v1
+ where instr(v1.program_args, 'COL_NAME1') > 0
+   and instr(v1.program_args, 'COL_NAME2') > 0
+   and instr(v1.program_args, 'COL_NAME3') > 0
