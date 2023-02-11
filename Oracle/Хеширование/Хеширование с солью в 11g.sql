@@ -9,8 +9,10 @@ declare
     
   end;
 begin
-  l_salt := 'B1EC3A7A1519CB023A5A';
-
-  dbms_output.put_line(a => i_get_hash(p_pass => '1', p_salt => l_salt));
+  
+  l_salt := rawtohex(dbms_crypto.RandomBytes(number_bytes => 10));
+  
   dbms_output.put_line(l_salt);
+  
+  dbms_output.put_line(a => i_get_hash(p_pass => '1', p_salt => l_salt));
 end;
