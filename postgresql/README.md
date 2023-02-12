@@ -4,10 +4,10 @@
 
 ### Запускаем контейнер с 14-й версией
 ```
-docker run -p 5434:5432 --name mypgdb14 -e POSTGRES_PASSWORD=mypass -d postgres:14
+docker run -p 5432:5432 --name mypgdb14 -e POSTGRES_PASSWORD=mypass -d postgres:14
 # mypgdb14 - название pg-кластера
 # mypass - пароль
-# 5434:5432 - проброс стандартного порта на 5434
+# 5432:5432 - проброс стандартного порта с 5432 на 5432
 # postgres:14 - версия Pg
 ```
 
