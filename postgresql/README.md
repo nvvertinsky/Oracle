@@ -12,11 +12,11 @@ docker run -p 5434:5432 --name mypgdb14 -e POSTGRES_PASSWORD=mypass -d postgres:
 ```
 
 ```
-docker ps 				 				  	   # Проверяем, что контейнер запущен
-docker exec -it mypgdb14 				       # Подключится к консоли
+docker ps                                      # Проверяем, что контейнер запущен
+docker exec -it mypgdb14                       # Подключится к консоли
 docker exec -it mypgdb14 psql -U postgres      # Подключаемся к консоли и запустить psql
 psql -d databaseName -U userName -h ip -p port # psql -d databaseName -U userName -h ip -p port
-\q									           # Отключится от psql
+\q                                             # Отключится от psql
 ```
 
 ```
