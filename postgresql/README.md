@@ -1,8 +1,8 @@
 # Postresql
 
-### Установка и запуск в docker
+# Установка и запуск в docker
 
-# Запускаем контейнер с 14-й версией
+### Запускаем контейнер с 14-й версией
 ```
 docker run -p 5434:5432 --name mypgdb14 -e POSTGRES_PASSWORD=mypass -d postgres:14
 # mypgdb14 - название pg-кластера
