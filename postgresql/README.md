@@ -57,3 +57,8 @@ timestamp    # «YYYY-MM-DD HH:MM:SS»
 text         # Строка переменной длины. До 1 ГБ.
 varchar      # Строка фиксированной длины
 ```
+
+### Выключить в psql autocommit
+```
+\set AUTOCOMMIT off
+```
