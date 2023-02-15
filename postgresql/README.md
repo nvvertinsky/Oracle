@@ -38,3 +38,19 @@ select schema_name from information_schema.schemata;                            
 select table_name from information_schema.tables where table_schema not in ('information_schema','pg_catalog'); # Список таблиц в схемах
 select usename, usesuper, usecreatedb from pg_catalog.pg_user;                                                  # Список пользователей
 ```
+
+### Основные типы данных 
+```
+smallint     # 2-байтовое целое число со знаком.
+integer      # 4-байтовое целое число со знаком.
+bigint       # 8-байтовое целое число со знаком.
+
+smallserial  # 2-байтовое целое число со знаком, автоинкрементное.
+serial       # 4-байтовое целое число со знаком, автоинкрементное.
+bigserial    # 8-байтовое целое число со знаком, автоинкрементное.
+
+numeric(m,d) # Где m - это общее количество цифр, а d - это число после десятичной дроби. Аналог number в Oracle
+
+date         # «YYYY-MM-DD»
+timestamp    # «YYYY-MM-DD HH:MM:SS»
+```
