@@ -53,4 +53,7 @@ numeric(m,d) # Где m - это общее количество цифр, а d 
 
 date         # «YYYY-MM-DD»
 timestamp    # «YYYY-MM-DD HH:MM:SS»
+
+text         # Строка переменной длины. До 1 ГБ.
+varchar      # Строка фиксированной длины
 ```
