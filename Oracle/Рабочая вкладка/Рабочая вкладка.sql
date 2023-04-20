@@ -84,3 +84,12 @@ select v1.index_name,
  where instr(v1.program_args, 'COL_NAME1') > 0
    and instr(v1.program_args, 'COL_NAME2') > 0
    and instr(v1.program_args, 'COL_NAME3') > 0
+ 
+
+select t.text,
+       t.object_name
+  from (select dbms_metadata.get_ddl(a.object_type, a.object_name, a.owner) text,
+               a.object_name
+          from dba_objects a
+         where object_type = 'VIEW') t
+where dbms_lob.instr(t.text, 'Искомая строка') > 1;
