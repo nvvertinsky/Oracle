@@ -14,7 +14,7 @@ begin
    where job = p_job;
 
   for x in (select object_id id,
-		   object_name text
+		           object_name text
               from big_table
              where rowid between l_rec.lo_rid and l_rec.hi_rid)
   loop
