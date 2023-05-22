@@ -1,1 +1,0 @@
-Dictionary cache - подкеш shared pool

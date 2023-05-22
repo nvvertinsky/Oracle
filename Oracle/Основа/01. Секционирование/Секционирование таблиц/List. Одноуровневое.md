@@ -1,11 +1,20 @@
-------- Одноуровневое партиционирование. LIST
+### Одноуровневое партиционирование. LIST
 
--- 01. Распределение данных определяется списком отдельных значений ключа секционирования.
--- 02. Можно задать секцию DEFAULT для всех значений ключа секционирования, не вошедних ни в один список.
+### Как работает:
+  - Распределение данных будет по списку значений
+  - Можно задать секцию DEFAULT. Данные попадут туда если значение не подошло по списку.
 
----- 1. LIST-партиционирования (список)
-drop table list_tab;
+### Когда применяется:
+  - Когда есть столбец, который представляет из себя какой-то список. Например список кодов региона.
 
+### Особенности:
+  - Можно добавлять секции к существующей таблице, если не была указана секция DEFAULT
+````
+alter table t1 add partition part3;
+````
+
+### Пример c ручный секционированием:
+````
 create table list_tab(
   order_id number,
   sernum varchar2(100 char),
@@ -33,11 +42,10 @@ select * from list_tab partition (region_west);
 select * from list_tab partition (region_south);
 select * from list_tab partition (region_null);
 select * from list_tab partition (region_unknown);
+````
 
-
----- 2. LIST-партиционирования (список) + автоматическое нарезание секций
-drop table auto_list_tab;
-
+### Пример c автоматическим секционированием:
+````
 create table auto_list_tab(
   order_id number,
   sernum varchar2(100 char),
@@ -58,7 +66,4 @@ commit;
 
 -- смотрим, какие секции созданы
 select * from user_tab_partitions t where t.table_name = 'AUTO_LIST_TAB';
-
-
--- 3. Можно добавлять секции к существующей таблице, если не была указана секция DEFAULT
-alter table t1 add partition part3;
+````
