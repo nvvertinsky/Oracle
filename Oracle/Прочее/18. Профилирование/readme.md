@@ -78,8 +78,12 @@ end;
   plshprof my_report_215043.trc # сформировать HTML файл с отчетом
   ````
 
-  - Через таблицы 
+  - Через таблицы, вызвав перед этим функцию analyze
   ````
+  begin
+   dbms_output.put_line(dbms_hprof.analyze('temp_dir', 'intab_trace.txt'));
+  end;
+  
   select runid, run_timestamp, total_elapsed_time, run_comment from dbmshp_runs;              # Возвращает все текущие запуски
   select symbolid, owner, module, type, function, line#, namespace from dbmshp_function_info; # получения имен всех профилированных подпрограмм по всем запускам
   
