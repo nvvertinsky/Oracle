@@ -32,18 +32,26 @@
   select /*MY*/ * from employees;
   select * from v$sql t where lower(t.sql_fulltext) like lower('%/*MY*/%');
   select * from v$sql_plan t where t.sql_id = '';
-  alter session set statistics_level = ALL                                                     -- Получать статистику реального выполнения, а не только предполагаемого.
+  
+  -- Получать статистику реального выполнения, а не только предполагаемого.
+  alter session set statistics_level = ALL
   select * from table(dbms_xplan.display_cursor(sql_id => '', format => 'ALLSTATS ADVANCED'));
   
-  select /*gather_plan_statistics hi*/ * from table(dbms_xplan.display_cursor(sql_id => '', format => 'ALLSTATS ADVANCED')); -- Или вместо statistics_level указать хинт
+  -- Или вместо statistics_level указать хинт
+  select /*gather_plan_statistics hi*/ * from table(dbms_xplan.display_cursor(sql_id => '', format => 'ALLSTATS ADVANCED'));
   ````
 
-  3. display_workload_repository (нет в 11g)
+  3. display_workload_repository (доступен только в Enterprise + подключена опция Diagnostics and Tuning option)
   ````
+  -- Проверяем что пакет куплен и установлен
+  show parameter control_management_pack_access
   select * from dbms_xplan.display_workload_repository(sql_id => '', format => 'ALLSTATS ADVANCED +cost +bytes');
   ````
   
-  4. В HTML
+  4. В HTML (доступен только в Enterprise + подключена опция Diagnostics and Tuning option)
   ````
+  -- Проверяем что пакет куплен и установлен
+  show parameter control_management_pack_access
+  
   select dbms_sqltune.report_sql_monitor(sql_id => '', type => 'HTML', report_level => 'ALL') report from dual;
   ````
