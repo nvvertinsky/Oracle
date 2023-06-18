@@ -34,7 +34,7 @@
   select * from v$sql_plan t where t.sql_id = '';
   
   -- Получать статистику реального выполнения, а не только предполагаемого.
-  alter session set statistics_level = ALL
+  alter session set statistics_level = ALL;
   select * from table(dbms_xplan.display_cursor(sql_id => '', format => 'ALLSTATS ADVANCED'));
   
   -- Или вместо statistics_level указать хинт
