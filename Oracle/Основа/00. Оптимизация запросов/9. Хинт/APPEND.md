@@ -6,7 +6,7 @@
   
 
 ### Когда логи UNDO и REDO не будут генерится: 
-
+````
 Table Mode    Insert Mode     ArchiveLog mode      result
 -----------   -------------   -----------------    ----------
 LOGGING       APPEND          ARCHIVE LOG          redo generated
@@ -17,7 +17,7 @@ LOGGING       APPEND          noarchive log mode   no redo
 NOLOGGING     APPEND          noarchive log mode   no redo
 LOGGING       no append       noarchive log mode   redo generated
 NOLOGGING     no append       noarchive log mode   redo generated
-
+````
 
 ### Когда использовать: 
   - При вставке больших объемов данных в таблицу
