@@ -57,18 +57,24 @@ with employees as (
   union all
   select 4 as vac_id, 5 as emp_id, to_date('01.01.2023', 'dd.mm.yyyy') as date_from, to_date('31.12.2023', 'dd.mm.yyyy') as date_to from dual
 )
-
-select *
+select v1.emp_id,
+       v1.date_from,
+       v1.date_to,
+       v1.vac_id
   from (select v.emp_id,
-               case 
-                 when lag(v.vac_id) over (partition by v.emp_id order by v.date_from) is not null then v.date_from + 1
+               case
+                 when lag(max(v.vac_id)) over (partition by v.emp_id order by v.date_from) is not null then v.date_from + 1
                  else v.date_from
                end date_from,
                case
-                 when lead(v.vac_id) over (partition by v.emp_id order by v.date_from) is not null then lead(date_from) over (partition by v.emp_id order by v.date_from) - 1
-                 else lead(date_from) over (partition by v.emp_id order by v.date_from)
+                 when lead(max(v.vac_id)) over (partition by v.emp_id order by v.date_from) is not null then lead(date_from) over (partition by v.emp_id order by v.date_from) - 1
+                 else lead(v.date_from) over (partition by v.emp_id order by v.date_from)
                end date_to,
-               v.vac_id
+               max(v.vac_id) vac_id,
+               case 
+                 when v.date_from + 1 = lead(v.date_from) over (partition by v.emp_id order by v.date_from) then 'Y'
+                 else 'N'
+               end insersect_dt
           from (select emp.emp_id,
                        emp.date_from date_from,
                        null vac_id
@@ -89,5 +95,8 @@ select *
                        null vac_id
                   from vacations vac
                  order by date_from) v
-         where v.emp_id = 2 ) v1
+         where v.emp_id = 5
+         group by v.emp_id,
+                  v.date_from ) v1
  where v1.date_to is not null
+   and v1.insersect_dt = 'N';
