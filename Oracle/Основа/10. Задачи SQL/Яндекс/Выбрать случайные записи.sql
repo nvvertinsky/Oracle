@@ -24,21 +24,25 @@ ID STATUS
 5  ERROR
 6  OK
 7  OK
-8	 ERROR
-9	 OK
+8  ERROR
+9  OK
 10 OK
 */
 
-select v1.id,
-       v1.status
-  from (select v.id,
-               v.status,
-               min(v.id) over () min_id, 
-               max(v.id) over () max_id
-          from (select rownum id,
-                       tbl.status
-                  from tbl 
-                 where tbl.status = 'ERROR') v) v1
- where v1.id = round(dbms_random.value(v1.min_id, v1.max_id));
+select *
+  from (select id, 
+               status
+          from tbl
+         where status = 'ERROR'
+         order by dbms_random.value) v
+ where rownum <= 2;
 
-select round(dbms_random.value(1, 5)) from dual; 
+
+/*
+Объяснение работы dbms_random.value и order by
+
+Важно четко различать, что происходит при использовании в ORDER BY функции и числовой константы. 
+При задании в операторе ORDER BY числовой константы, сортировка осуществляется по столбцу с заданным в списке SELECT порядковым номером. 
+Когда в ORDER BY задается функция, сортировке подвергается результат, возвращаемый функцией для каждой строки.
+
+*/
