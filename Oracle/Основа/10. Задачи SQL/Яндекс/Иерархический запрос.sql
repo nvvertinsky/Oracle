@@ -11,8 +11,14 @@
   Подр_3
 */
 
-select lpad('  ', level*2) || name
-  from tbl
- start with parent_id is null 
-connect by prior parent_id = id
- order siblings by name;  
+create table tbl (id number(12), parent_id number(12), name varchar2(240));
+insert into tbl values (10, null, 'Подр_4');
+insert into tbl values (2, 10, 'Подр_3');
+insert into tbl values (3, 10, 'Подр_2');
+
+
+ select lpad('  ', level * 2) || name
+   from tbl
+  start with parent_id is null 
+connect by prior id = parent_id
+  order siblings by name;  
