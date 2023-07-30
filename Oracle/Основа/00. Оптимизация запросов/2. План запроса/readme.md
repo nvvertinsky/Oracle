@@ -27,28 +27,27 @@
   set autotrace off;
   ````
   
-  2. v$sql_plan + dbms_xplan
+  2. dbms_xplan.display_cursor
   ````
-  select /*MY*/ * from employees;
-  select * from v$sql t where lower(t.sql_fulltext) like lower('%/*MY*/%');
-  select * from v$sql_plan t where t.sql_id = '';
-  
-  -- Получать статистику реального выполнения, а не только предполагаемого.
-  alter session set statistics_level = ALL;
-  select * from table(dbms_xplan.display_cursor(sql_id => '', format => 'ALLSTATS ADVANCED'));
-  
-  -- Или вместо statistics_level указать хинт
-  select /*gather_plan_statistics hi*/ * from table(dbms_xplan.display_cursor(sql_id => '', format => 'ALLSTATS ADVANCED'));
+  alter session set statistics_level = ALL;                                                     # Сбор статистики по реальному плану запроса. Или указать хинт /*gather_plan_statistics*/
+  select /*MY*/ * from employees;                                                               # Выполняем запрос
+  select * from v$sql t where lower(t.sql_fulltext) like lower('%MY%');                         # Находим его sql_id
+  select * from table(dbms_xplan.display_cursor(sql_id => '', format => 'ALLSTATS ADVANCED'));  # Получаем план запроса
   ````
-
-  3. display_workload_repository (доступен только в Enterprise + подключена опция Diagnostics and Tuning option)
+  
+  3. v$sql_plan
+  ````
+  select * from v$sql_plan t where t.sql_id = '2chv128hyhurq';
+  ````
+  
+  4. display_workload_repository. В Enterprise. Или подключена опция Diagnostics and Tuning option). Для Oracle11g используйте dbms_xplan.display_awr
   ````
   -- Проверяем что пакет куплен и установлен
   show parameter control_management_pack_access
   select * from dbms_xplan.display_workload_repository(sql_id => '', format => 'ALLSTATS ADVANCED +cost +bytes');
   ````
   
-  4. В HTML (доступен только в Enterprise + подключена опция Diagnostics and Tuning option)
+  5. В HTML. Enterprise. Или подключена опция Diagnostics and Tuning option
   ````
   -- Проверяем что пакет куплен и установлен
   show parameter control_management_pack_access
