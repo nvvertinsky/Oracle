@@ -54,3 +54,17 @@ select sql_id,
   from sys.dba_hist_sqlstat t
  where t.snap_id = :snap;
 ````
+
+### Апостроф в каждой строке Excel
+```
+Sub apostrof()
+  Dim cell As Range
+  Application.ScreenUpdating = False
+  
+  For Each cell In Selection.SpecialCells(xlCellTypeConstants)
+    cell.Value = " '" & cell.Value & "'"
+  Next
+  
+  Application.ScreenUpdating = True
+End Sub
+```
