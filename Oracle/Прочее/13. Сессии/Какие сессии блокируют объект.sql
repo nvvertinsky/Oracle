@@ -1,16 +1,33 @@
-SELECT 'ALTER SYSTEM KILL SESSION '''||(s.sid)||','||(s.serial#)||''';' command,
-       s.INST_ID, 
-       s.SID, 
-       s.SERIAL#, 
-       s.USERNAME, 
-       s.STATUS, 
-       s.MACHINE
-  FROM gv$lock l, 
-       gv$session s 
- WHERE l.INST_ID=s.INST_ID
-   AND l.TYPE='TO'
-   AND l.SID=s.SID
-   AND l.id1 IN (SELECT o.object_id 
-	           FROM dba_objects o 
-                  WHERE o.object_name = 'NAME'
-                    AND o.owner='OWNER');
+select 'BLOCKER',
+       sess.sid, 
+       sess.serial#, 
+       sess.osuser, 
+       sess.machine, 
+       sess.program,
+       sess.STATUS,
+       null holding_session,
+       obj.OBJECT_NAME
+  from v$session sess,
+       dba_blockers blckr,
+       v$locked_object lckobj,
+       dba_objects obj,
+       v$sql vsql
+ where blckr.holding_session = sess.SID
+   and lckobj.SESSION_ID = blckr.holding_session
+   and obj.OBJECT_ID = lckobj.OBJECT_ID
+   and vsql.SQL_ID(+) = sess.SQL_ID
+ union all
+select 'WAITERS',
+       sess.sid, 
+       sess.serial#, 
+       sess.osuser, 
+       sess.machine, 
+       sess.program,
+       sess.STATUS,
+       wtr.holding_session,
+       null object_name
+  from v$session sess,
+       dba_waiters wtr,
+       v$sql vsql
+ where wtr.waiting_session = sess.SID
+   and vsql.SQL_ID(+) = sess.SQL_ID
