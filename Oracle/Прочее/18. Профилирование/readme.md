@@ -63,11 +63,14 @@ create or replace directory N1_TEST as '/mnt/test';
 ### Начинаем профилирование
 ````
 begin
-  dbms_hprof.start_profiling(location => 'HPROF_DIR', filename => 'vprofile.trc');
+  dbms_hprof.start_profiling(location => 'TEST', filename => 'vprofile.trc');
+end;
 
-  -- выполняем наш код
-  main_proc;
+begin
+  proc();
+end;
 
+begin
   dbms_hprof.stop_profiling();
 end;
 ````
