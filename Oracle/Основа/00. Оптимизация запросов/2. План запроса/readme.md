@@ -16,7 +16,7 @@
   2. EXPLAIN PLAN. Вывод только плана.
   ````
   explain plan set statement_id = 'MY_QUERY' for select * from employees; 
-  select * from table(dbms_xplan.display(statement_id => 'MY_QUERY', format => 'ADVANCED'));
+  select * from table(dbms_xplan.display(null, 'MY_QUERY', 'ALLSTATS'));
   ````
 
 ### Реальный план
@@ -29,10 +29,10 @@
   
   2. dbms_xplan.display_cursor
   ````
-  alter session set statistics_level = ALL;                                                     # Сбор статистики по реальному плану запроса. Или указать хинт /*gather_plan_statistics*/
-  select /*MY*/ * from employees;                                                               # Выполняем запрос
-  select * from v$sql t where lower(t.sql_fulltext) like lower('%MY%');                         # Находим его sql_id
-  select * from table(dbms_xplan.display_cursor(sql_id => '', format => 'ALLSTATS ADVANCED'));  # Получаем план запроса
+  alter session set statistics_level = ALL;                                    # Сбор статистики по реальному плану запроса. Или указать хинт /*gather_plan_statistics*/
+  select /*MY*/ * from employees;                                              # Выполняем запрос
+  select * from v$sql t where lower(t.sql_text) like lower('%MY%');            # Находим его sql_id
+  select * from table(dbms_xplan.display_cursor('sql_id', null, 'ALLSTATS'));  # Получаем план запроса. Для получения A колонок, нужно дождаться полного выполнения запроса, без доп. фетча строк.
   ````
   
   3. v$sql_plan
@@ -40,7 +40,7 @@
   select * from v$sql_plan t where t.sql_id = '2chv128hyhurq';
   ````
   
-  4. display_workload_repository. В Enterprise. Или подключена опция Diagnostics and Tuning option). Для Oracle11g используйте dbms_xplan.display_awr
+  4. display_workload_repository. В Enterprise. Или подключена опция Diagnostics and Tuning option. Для Oracle11g используйте dbms_xplan.display_awr
   ````
   -- Проверяем что пакет куплен и установлен
   show parameter control_management_pack_access
