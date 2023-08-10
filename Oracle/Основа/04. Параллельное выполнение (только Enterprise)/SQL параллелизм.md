@@ -9,21 +9,23 @@ alter table t parallel 4; # При выполнении запросов, буд
 select count(*) from t;
 ````
 
+### Как распараллелить DML
+````
+alter session enable parallel dml;         # Сначала включить параллельный DML. 
+select pdml_enabled 
+  from v$session 
+ where sid = sys_context('userenv','sid'); # Узнать включен ли параллельный DML
+update t set status = 'done';              # Пишем просто DML
+````
+
 ### Параллельная прямая загрузка
 ````
 create table new_table parallel as select a.*,
-					                      b.user_id,
-					                      b.created user_created
-									 from big_table a,
-								          user_info b
-									where a.owner = b.username;
-````
-
-### DML
-````
-alter session enable parallel dml; -- нужно сначала обязательно включать параллельный DML. 
-select pdml_enabled from v$session where sid = sys_context('userenv','sid'); -- узнать включен ли параллельный DML
-update big_table set status = 'done'; -- пишем просто DML который нужно выполнить параллельно
+					                                     b.user_id,
+					                                     b.created user_created
+									                            from big_table a,
+								                                  user_info b
+									                                 where a.owner = b.username;
 ````
 
 ### Ограничения:
