@@ -4,6 +4,11 @@ alter table big_table parallel;   # Oracle сам определит в моме
 alter table big_table parallel 4; # При выполнении запросов, будет запущено 4 параллельных процесса
 ````
 
+### Теперь просто выполняем запрос к таблице
+´´´´
+select count(*) from big_table;
+´´´´
+
 ### Параллельная прямая загрузка
 ````
 create table new_table parallel as select a.*,
