@@ -38,7 +38,7 @@ select t.chunk_id,
        t.start_rowid,
        t.end_rowid
   from dba_parallel_execute_chunks t
- where task_name = 'PLPRC'
+ where t.task_name = 'PLPRC'
  order by chunk_id;
  
 
