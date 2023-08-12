@@ -46,7 +46,7 @@ with emp_data(employee_id, nm, manager_idm, lvl) as (select emp.employee_id,
                                                             1 lvl
                                                        from employees emp
                                                       where emp.manager_id is null
-                                                     union all
+                                                      union all
                                                      select emp.employee_id,
                                                             emp.first_name || chr(32) || emp.last_name nm,
                                                             emp.manager_id,

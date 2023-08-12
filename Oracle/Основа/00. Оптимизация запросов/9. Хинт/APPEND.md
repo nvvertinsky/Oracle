@@ -38,7 +38,7 @@ NOLOGGING     no append       noarchive log mode   redo generated
 ````
 alter index big_table_idx unusable;
 alter session set skip_unusable_indexes = true;
-insert /*APPEND*/ into big_table select * from all_objects; 
+insert /*+ APPEND*/ into big_table select * from all_objects; 
 alter index big_table_idx rebuild nologging;
 ````
 
