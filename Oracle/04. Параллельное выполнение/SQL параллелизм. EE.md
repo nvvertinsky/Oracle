@@ -9,18 +9,20 @@ alter table t parallel 4; # При выполнении запросов, буд
 select count(*) from t;
 ````
 
-### Как распараллелить DML
+### Параллельное выполнение DML
 ````
 alter session enable parallel dml;         # Сначала включить параллельный DML. 
 select pdml_enabled 
   from v$session 
  where sid = sys_context('userenv','sid'); # Узнать включен ли параллельный DML
 update t set status = 'done';              # Пишем просто DML
+
+insert /*+ APPEND*/ into                   # Тоже будет выполнятся параллельно. 
 ````
 
-### Параллельная прямая загрузка
-````
-create table t2 parallel as select * from t;
+### Параллельное выполнение DDL
+````                
+create table t2 parallel as select * from t; 
 ````
 
 ### Посмотреть сколько параллельных сессий породила сессия 258
