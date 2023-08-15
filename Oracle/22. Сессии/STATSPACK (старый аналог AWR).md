@@ -3,14 +3,21 @@
 
 ### Описание
   - Аналог AWR
+  - 2 dbms_job
+    - Первый вызывает statspack.snap и собирает статистику.
+	- Второй statspack.purge(sysdate-7, true). Удаляет старую статистику, которой более 7 дней
 
+### Генерация отчета
+````
+@?/rdbms/admin/spreport.sql
+````
 
 
 ### Представления 
 ````
 STATS$DATABASE_INSTANCE
 STATS$LEVEL_DESCRIPTION
-STATS$SNAPSHOT
+STATS$SNAPSHOT           # Все снапшоты
 STATS$DB_CACHE_ADVICE
 STATS$FILESTATXS
 STATS$TEMPSTATXS
