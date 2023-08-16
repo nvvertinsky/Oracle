@@ -11,7 +11,7 @@ alter table t parallel 4; # При выполнении запросов, буд
 select count(*) from t;   # Выполняем запрос без подсказки
 ````
 
-### 3. Если выбран п.2, то параллельный DML отдельно включаем 
+### 3. Включаем параллельный DML в сессии
 ````
 alter session enable parallel dml;         # Сначала включить параллельный DML. 
 select pdml_enabled 
