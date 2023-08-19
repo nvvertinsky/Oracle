@@ -8,3 +8,13 @@ CREATE TABLE XX_INTERFACE
 TRX_NUMBER VARCHAR2(255)
 )
 */
+
+
+-- dbms_parallel
+
+-- 01. Создаем процедуру с параметрами p_start rowid, p_end rowid.
+-- 02. Внутри делаем запрос к таблице XX_INTERFACE, где rowid between p_start and p_end
+-- 03. Внутри loop вызываем XX_API_PKG.EXECUTE(id)
+-- 04. Создаем задание 
+-- 05. Делим таблицу XX_INTERFACE на чанки по блокам. 
+-- 06. Выполняем каждый чанк параллельно.
