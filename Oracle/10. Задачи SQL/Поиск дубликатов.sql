@@ -46,7 +46,6 @@ delete from persn
 -- 05. Удалить дубликаты если нет ID
 create table t2 (txt varchar2(240));
 
-
 insert into t2 values ('str-1');
 insert into t2 values ('str-1');
 insert into t2 values ('str-2');
