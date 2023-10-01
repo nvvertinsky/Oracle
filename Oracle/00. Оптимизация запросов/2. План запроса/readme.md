@@ -57,3 +57,19 @@
   
   select dbms_sqltune.report_sql_monitor(sql_id => '', type => 'HTML', report_level => 'ALL') report from dual;
   ````
+
+
+### Сравнение планов
+Берем необходимые sql_id и выполняем
+´´´´
+DECLARE
+  l_clob clob;
+BEGIN
+  l_clob := DBMS_XPLAN.COMPARE_PLANS( 
+    reference_plan    => cursor_cache_object('0hxmvnfkasg6q', NULL),
+    compare_plan_list => plan_object_list(cursor_cache_object('10dqxjph6bwum', NULL)),
+    type              => 'TEXT',
+    level             => 'TYPICAL', 
+    section           => 'ALL');
+END;
+´´´´
