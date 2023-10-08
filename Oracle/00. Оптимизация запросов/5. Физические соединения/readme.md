@@ -48,13 +48,14 @@
 
 Пример работы:
 ````
-  select a.ename,
-		 b.ename,
-		 a.hiredate,
-		 b.hiredate
-    from emp a,
-		 emp b
-   where a.empno = b.empno;
+select a.ename,
+       b.ename,
+       a.hiredate,
+       b.hiredate
+  from emp a,
+       emp b
+ where a.empno = b.empno
+   and a.hiredate <= b.hiredate;
 ````
   1. Читается "EMP a" и сортируется по empno. 
   2. Читается "EMP b" и сортируется по empno. 
