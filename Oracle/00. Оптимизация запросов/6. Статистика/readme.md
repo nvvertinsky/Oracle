@@ -19,3 +19,12 @@ select s.STALE_STATS /*YES - Статистика устарела, NO - не у
   from dba_tab_statistics s 
  where s.TABLE_NAME = 'EMP'
 ````
+
+### Включить параллельный сбор статистики
+````
+begin
+  dbms_output.put_line(dbms_stats.get_prefs(pname => 'CONCURRENT'));
+  dbms_stats.set_global_prefs(pname => 'CONCURRENT', pvalue => 'TRUE');
+  dbms_stats.gather_table_stats(ownname => , tabname => );
+end; 
+````
