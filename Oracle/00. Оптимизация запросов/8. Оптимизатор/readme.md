@@ -41,12 +41,10 @@ SELECT t1.c1, VW_JF_1.item_2
 
 
 
-
-
-
-### Настройки оптимизатора
-````
-select t.value from v$parameter t where t.name = 'optimizer_mode'; -- Какой режим работы оптимизатора включен
-alter system set optimizer_mode = all_rows;                        -- переключить режим работы оптимизатора в rule на уровне БД.
-alter session set optimizer_mode = all_rows;                       -- переключить режим работы оптимизатора в rule на уровне сессии.
-````
+## Влияние на оптимизатор
+  - С помощью параметров
+    - optimizer_mode
+    - optimizer_mode
+    - db_multiblock_read_count 
+    - и многое другое. См. документацию.
+  - С помощью подсказок
