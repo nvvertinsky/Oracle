@@ -11,3 +11,11 @@ begin
   dbms_stats.gather_index_stats('HR', 'EMPLOYEE_INX'); -- По индексу
 end;
 ````
+
+
+### Как понять что статистика устарела:
+````
+select s.STALE_STATS /*YES - Статистика устарела, NO - не устарела, null - Не собирается*/
+  from dba_tab_statistics s 
+ where s.TABLE_NAME = 'EMP'
+````
