@@ -48,3 +48,10 @@ select round((t.sofar /*Единиц выполненно на данны мом
   from v$session_longops t
  order by t.last_update_time desc;
 ````
+
+### NLS Параметры даты
+````
+select * from nls_database_parameters where parameter in ('NLS_DATE_FORMAT','NLS_DATE_LANGUAGE');  # На уровне БД 
+select * from nls_instance_parameters where parameter in ('NLS_DATE_FORMAT','NLS_DATE_LANGUAGE');  # На уровне экземпляра БД
+select * from nls_session_parameters where parameter in ('NLS_DATE_FORMAT','NLS_DATE_LANGUAGE');   # На уровне сессии
+````
