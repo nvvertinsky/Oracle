@@ -1,4 +1,3 @@
-/*
 Дана таблица TBL
 A
 ------
@@ -6,13 +5,14 @@ A
 [NULL]
 
 Что выведет запрос?
-select count(a), 
-       count(*), 
-	   sum(a) 
+
+
+drop table tbl;
+create table tbl (A number(12));
+insert into tbl values (10);
+insert into tbl values (null);
+
+select count(a), -- 1
+       count(*), -- 2
+       sum(a)    -- 10
   from tbl;
-
-*/
-
--- Ответ: 1, 2, 10
-
-

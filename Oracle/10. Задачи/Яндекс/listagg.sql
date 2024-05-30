@@ -9,10 +9,16 @@ DEPT    EMP
 Нужно сгруппировать по полю DEPT и перечислить значения из EMP через запятую с сортировкой по убыванию:
 DEPT    EMPS
 ------------------
-Подр1	Сотр1
-Подр2	Сотр3, Сотр2
+Подр1  Сотр1
+Подр2  Сотр3, Сотр2
 */
 
-select listagg(emp, ', ') within group (order by emp desc) 
-  from tbl
- group by dept;
+create table tbl(dept varchar2(240), emp varchar2(240));
+insert into tbl values ('Подр1', 'Сотр1');
+insert into tbl values ('Подр2', 'Сотр2');
+insert into tbl values ('Подр2', 'Сотр3');
+
+
+select listagg(t.emp, ', ') within group (order by t.emp desc)
+  from tbl t
+ group by t.dept

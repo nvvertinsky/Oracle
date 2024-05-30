@@ -9,17 +9,18 @@ A
 6
 Что выведет запрос*/
 
+
 select a, 
        rank() over(order by a) b, 
        dense_rank() over(order by a) c
   from tbl
-order by a
+ order by a
 
 
-2	1	1
-2	1	1
-4	3	2
-4	3	2
-6	5	3
-
-
+a | b | c
+-----------
+2   1   1
+2   1   1
+4   3   2
+4   3   2
+6   5   3

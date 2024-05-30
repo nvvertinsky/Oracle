@@ -34,12 +34,12 @@ select *
                status
           from tbl
          where status = 'ERROR'
-         order by dbms_random.value) v
+         order by dbms_random.random) v
  where rownum <= 2;
 
 
 /*
-Объяснение работы dbms_random.value и order by
+Объяснение работы dbms_random.random и order by
 
 Важно четко различать, что происходит при использовании в ORDER BY функции и числовой константы. 
 При задании в операторе ORDER BY числовой константы, сортировка осуществляется по столбцу с заданным в списке SELECT порядковым номером. 
