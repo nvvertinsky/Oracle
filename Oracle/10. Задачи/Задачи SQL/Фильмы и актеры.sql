@@ -1,4 +1,4 @@
--- Найти актера 1 и актера 2, которые играли в одном фильме
+-- Вывести название фильма где играли актеры 1 и 2.
 
 with fm as (select 'Мистер и миссис Смит' film, '1' actor from dual
             union all
@@ -7,7 +7,7 @@ with fm as (select 'Мистер и миссис Смит' film, '1' actor from 
             select 'Бесславные ублюдки' film, '1' actor from dual
             union all
             select 'Игра на понижение' film, '2' actor from dual )
-select film
+select fm.film
   from fm
- group by film
-having sum(case actor when '1' then 1 else 0 end) > 0 and sum(case actor when '2' then 1 else 0 end) > 0;
+ group by fm.film
+having sum(case fm.actor when '1' then 1 else 0 end) > 0 and sum(case fm.actor when '2' then 1 else 0 end) > 0

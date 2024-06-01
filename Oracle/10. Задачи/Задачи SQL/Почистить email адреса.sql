@@ -21,19 +21,20 @@ insert into t2 select 'Ivan.ivanov@email.com' from dual
 select * from t2;
 
 
-delete 
-  from t2 
- where t2.rowid not in (select min(t2.rowid)
-                          from t2
-                         group by t2.email
-                        having count (t2.email) > 1
-                         union all
-                        select min(t2.rowid)
-                          from t2
-                         group by t2.email
-                        having count(t2.email) = 1) /*Убираем только дубли*/
-    or not (  
-              regexp_like(upper(t2.email),'^[A-Z0-9._-]+@[A-Z0-9._-]+\.[A-Z]{2,}$')
-            or
-              regexp_like(upper(t2.email),'^[А-ЯA-Z0-9._-]+@[А-ЯA-Z0-9._-]+\.(РФ)$')
-           ) /*Убираем email адреса которые не соответствуют маске*/
+select *
+  from t2
+
+
+delete  
+  from t2
+ where t2.rowid in (select max(rowid)
+                      from t2 
+                     where t2.email in (select t2.email
+                                          from t2
+                                         group by t2.email
+                                        having count(*) > 1)
+                     group by t2.email)
+                     
+delete  
+  from t2
+ where t2.email not like '%@%.com' 

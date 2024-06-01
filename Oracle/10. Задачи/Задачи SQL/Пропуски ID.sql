@@ -5,10 +5,26 @@
 
 */
 
-
-select v.id + 1 start,
-       v.next_id - 1 next_id end
-  from (select id, 
-               lead(id) over (order by id) next_id 
-		  from t) v 
-		 where v.id + 1 != v.next_id;
+with t as (select 1 id from dual
+           union all 
+           select 2 from dual
+           union all 
+           select 3 from dual
+           union all 
+           select 4 from dual
+           union all 
+           select 5 from dual
+           union all 
+           select 6 from dual
+           union all 
+           select 10 from dual
+           union all 
+           select 11 from dual
+           union all 
+           select 12 from dual),
+    t2 as (select level from dual connect by level <= 12)
+select *
+  from t2
+ minus  
+select *
+  from t

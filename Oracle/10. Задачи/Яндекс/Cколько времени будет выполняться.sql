@@ -18,8 +18,7 @@ end;
 begin
   for cur in (select nvl(2, f1) a, coalesce(2, f2) b from dual) 
   loop 
-    dbms_output.put_line(cur.a); 
-    dbms_output.put_line(cur.b); 
+    null;
   end loop;
 end; 
 
