@@ -18,6 +18,17 @@
 alter system flush shared_pool;
 ````
 
+### Посмотреть долго выполняющийся запрос кеш
+````
+select s.sql_id,
+       s.first_load_time,
+	   s.last_load_time,
+	   s.elapsed_time, -- микросекунды
+	   s.cpu_time
+  from v$sql s
+ where s.sql_text like '%%';
+````
+
 # Дублирование sql_id в представлении v$sql 
 
 ### Причины
