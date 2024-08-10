@@ -64,3 +64,4 @@ alter session set transaction read committed;
 ### Что используется в Oracle: 
   - READ COMMITED (по умолчанию) 
   - SERIALIZABLE
+  - READ ONLY
