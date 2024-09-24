@@ -3,8 +3,6 @@
 3. У кого из сотрудников ЗП больше чем у руководителя?
 
 
-
-
 select avg(boss.salary)
   from employees boss
  where boss.employee_id in (select emp.manager_id

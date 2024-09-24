@@ -4,7 +4,8 @@
 Можно ли найти запрос в ASH если он длился 5 секунд?
 */
 
+Active Session History
 
-1. Active Session History. Истории сессий хранятся.
-2. v$active_session_history
-3. Да.
+select * from v$active_session_history
+
+Да, так как снимок делается каждую секунду. 

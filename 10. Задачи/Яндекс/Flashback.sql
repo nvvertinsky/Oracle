@@ -2,5 +2,4 @@
 
 grant flashback any table to nvvertinskiy;
 
-select *
-  from ua_ag as of scn timestamp_to_scn(sysdate - interval '1' hour)
+select * from t as of scn timestamp_to_scn(sysdate - (1/24))

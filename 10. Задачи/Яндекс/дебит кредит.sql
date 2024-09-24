@@ -43,32 +43,3 @@ with debit as (select 0001 acc_id, to_date('01.01.2024', 'dd.mm.yyyy') dt, 1000 
             select '0004' acc_id from dual)
 			
 			
-			
-			
-			
-			
-select t.dt, 
-       t.acc_id,
-       nvl(db.amnt, 0) - nvl(cr.amnt, 0)
-  from (select acc.acc_id,
-               ddate.dt
-          from acc,
-              (select to_date('31.12.2023', 'dd.mm.yyyy') + level dt from dual connect by level <= 3) ddate) t,
-      (select sum(debit.amnt) amnt,
-              debit.acc_id,
-              debit.dt
-         from debit
-        group by debit.acc_id,
-                 debit.dt) db,
-      (select sum(credit.amnt) amnt,
-              credit.acc_id,
-              credit.dt
-         from credit
-        group by credit.acc_id,
-                 credit.dt) cr
- where db.acc_id(+) = t.acc_id
-   and db.dt(+) = t.dt
-   and cr.acc_id(+) = db.acc_id
-   and cr.dt(+) = db.dt
- order by t.dt,
-          t.acc_id

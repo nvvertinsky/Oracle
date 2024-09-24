@@ -1,7 +1,5 @@
 /*Назвать примеры json-функций. Написать пример выбора значения поля b из JSON-объекта {"a":{"b": 123}}*/
 
-set serveroutput on
-
 declare
   l_json_clob clob := '{"a":{"b": 123}}';
   l_json json_object_t;

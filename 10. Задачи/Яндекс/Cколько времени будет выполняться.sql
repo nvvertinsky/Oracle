@@ -15,12 +15,10 @@ begin
     return 1;
 end;
 
-begin
-  for cur in (select nvl(2, f1) a, coalesce(2, f2) b from dual) 
-  loop 
-    null;
-  end loop;
-end; 
+select nvl(2, f1) a, coalesce(2, f2) b from dual
 
-2, 2
-3 sec;
+
+/*
+Вернет: 2, 2. 
+Выполняться: 3 сек
+*/

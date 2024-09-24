@@ -10,5 +10,4 @@ exception
     dbms_output.put_line(length(sqlerrm));
 end;
 
-
-Ответ: 512.
+--512

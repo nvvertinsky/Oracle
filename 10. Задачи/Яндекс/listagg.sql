@@ -18,7 +18,6 @@ insert into tbl values ('Подр1', 'Сотр1');
 insert into tbl values ('Подр2', 'Сотр2');
 insert into tbl values ('Подр2', 'Сотр3');
 
-
-select listagg(t.emp, ', ') within group (order by t.emp desc)
-  from tbl t
- group by t.dept
+select listagg(tbl.emp, ',') within group (order by tbl.emp desc)
+  from tbl 
+ group by tbl.dept
