@@ -41,3 +41,57 @@
 		- SORT_AREA_RETAINED_SIZE - Объем памяти, который используется для хранения остортированных данных. Если места не хватит, то как обычно скидываем в TEMP
 		- HASH_AREA_SIZE - Объем памяти, для хранения хеш-таблиц. Когда происходит хеш соединение таблиц.
 	- Какой режим выбран контролирует параметр WORKAREA_SIZE_POLICY
+	
+### Примеры 
+
+Сначала смотрим сколько PGA занимает наш процесс:
+
+````
+select t.sid, 
+       t.serial#, 
+       t.osuser, 
+       t.machine, 
+       t.program,
+       t.status,
+       t.module,
+       t.client_info,
+       t.prev_exec_start,
+       t.logon_time,
+       round(p.PGA_USED_MEM / 1024 / 1024, 2) || ' mb' pga_used,
+       round(p.PGA_ALLOC_MEM / 1024 / 1024, 2) || ' mb' pga_alloc,
+       round(p.PGA_FREEABLE_MEM / 1024 / 1024, 2) || ' mb' freeable_mem
+  from v$session t,
+       v$process p
+ where upper(t.OSUSER) != upper('oracle')
+   and t.type = 'USER'
+   and p.addr = t.paddr
+   and t.SID = SYS_CONTEXT('USERENV','SID')
+ order by t.machine asc;
+````
+
+Дальше заполняем PGA данными: 
+
+````
+begin
+  tpkg.fill_pga(1000000);
+end; 
+````
+
+Память заполнилась на 80 мб. Освобождаем память. 
+
+````
+begin
+  tpkg.flush_pga;
+end; 
+````
+
+Но видим что PGA все так же занимает 80 мб. Дело в том что память уже выделена, просто она пустая. Можно еще раз заполнить память на 80мб. 
+Занимаемое место не увеличиться. 
+
+Чтобы полностью сбросить память можно вызвать: 
+
+````
+begin
+  dbms_session.reset_package();
+end;
+````
