@@ -12,7 +12,7 @@
 
 
 ### Предполагаемый план
-  1. IDE. Например F5 в PL/SQL Developer
+  1. Например F5 в PL/SQL Developer
   
   2. EXPLAIN PLAN
   ````
