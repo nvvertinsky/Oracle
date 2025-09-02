@@ -14,7 +14,7 @@
 ### Предполагаемый план
   1. IDE. Например F5 в PL/SQL Developer
   
-  2. EXPLAIN PLAN. Вывод только плана.
+  2. EXPLAIN PLAN
   ````
   explain plan set statement_id = 'MY_QUERY' for select * from employees; 
   select * from table(dbms_xplan.display(null, 'MY_QUERY', 'ALLSTATS'));
