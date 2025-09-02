@@ -13,7 +13,6 @@
 
 ### Предполагаемый план
   1. Например F5 в PL/SQL Developer
-  
   2. EXPLAIN PLAN
   ````
   explain plan set statement_id = 'MY_QUERY' for select * from employees; 
