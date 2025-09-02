@@ -20,7 +20,7 @@
   ````
 
 ### Реальный план
-  1. Autotrace (только в SQL plus). План + статистика.
+  1. Autotrace (только в SQL plus)
   ````
   set autotrace traceonly;
   select * from employees;
