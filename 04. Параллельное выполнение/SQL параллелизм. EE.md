@@ -18,8 +18,8 @@ alter session enable parallel dml;         # Сначала включить п�
 select pdml_enabled 
   from v$session 
  where sid = sys_context('userenv','sid'); # Узнать включен ли параллельный DML
-update t set status = 'done';              # Пишем просто DML
 
+update t set status = 'done';              # Пишем просто DML
 insert /*+ APPEND*/ into                   # Тоже будет выполнятся параллельно. 
 ````
 
