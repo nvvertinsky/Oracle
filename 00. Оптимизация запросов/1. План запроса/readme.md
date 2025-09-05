@@ -36,22 +36,6 @@
   ````
   select * from v$sql_plan t where t.sql_id = '2chv128hyhurq';
   ````
-  
-  4. display_workload_repository. Для Oracle11g используйте dbms_xplan.display_awr. Обязательно нужна лицензия на Oracle Diagnostic Pack
-  ````
-  -- Проверяем что пакет куплен и установлен
-  show parameter control_management_pack_access
-  select * from dbms_xplan.display_workload_repository(sql_id => '', format => 'ALLSTATS ADVANCED +cost +bytes');
-  ````
-  
-  5. В HTML. Обязательно нужна лицензия на Oracle Diagnostic Pack.
-  ````
-  -- Проверяем что пакет куплен и установлен
-  show parameter control_management_pack_access
-  
-  select dbms_sqltune.report_sql_monitor(sql_id => '', type => 'HTML', report_level => 'ALL') report from dual;
-  ````
-
 
 ### Сравнение планов
 Берем необходимые sql_id и выполняем
