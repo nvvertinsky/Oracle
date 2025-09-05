@@ -27,7 +27,6 @@ select empno, ename, sal from emp where empno = 7934 for update;
 update emp
    set sal = 5000
  where empno = 7934;
-commit;
 ````
 
 Пример: 
