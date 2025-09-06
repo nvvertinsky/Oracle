@@ -9,25 +9,7 @@
   - Если наборы данных содержат мало строк. 
   - Либо наборы содержат много строк, но режим оптимизатора FIRST_ROWS
 
-Как работает:
-````
-  select empno,
-         dname
-    from emp,
-         dept
-   where emp.deptno = dept.deptno;
-````
-
-Псевдокод логики процесса соединения:
-````
-  for x in (select * from emp)
-  loop
-    index lookup the rowid for x.deptno;
-    select * from dept where dept.rowid = that rowid;
-    output joined record
-  end loop;
-````
-
+Пример:
   1. Читаем первый блок таблицы emp.
   2. Берем первую строку из блока и используем ее значение deptno для поиска в таблице dept
   3. Читаем индексные блоки таблицы dept. Находим нужный лист с rowid строки в dept
