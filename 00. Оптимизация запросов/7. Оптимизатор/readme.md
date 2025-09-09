@@ -44,7 +44,5 @@ SELECT t1.c1, VW_JF_1.item_2
 ## Влияние на оптимизатор
   - С помощью параметров
     - optimizer_mode
-    - optimizer_mode
-    - db_multiblock_read_count 
-    - и многое другое. См. документацию.
+    - db_multiblock_read_count
   - С помощью подсказок
