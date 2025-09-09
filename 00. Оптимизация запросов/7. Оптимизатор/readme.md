@@ -35,14 +35,3 @@ SELECT t1.c1, VW_JF_1.item_2
  WHERE t1.c1 = VW_JF_1.item_1 
    AND t1.c1 > 1
 ````
-
-
-
-
-
-
-## Влияние на оптимизатор
-  - С помощью параметров
-    - optimizer_mode
-    - db_multiblock_read_count
-  - С помощью подсказок
