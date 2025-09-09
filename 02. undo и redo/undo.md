@@ -22,7 +22,7 @@ Undo - это информация, которую Oracle сохраняет в 
   - Оператором truncate
   - alter table + move
   - export / import
-  - create table as select (CTAS)
+  - create table as select
   - dbms_redefinition  
 
 
