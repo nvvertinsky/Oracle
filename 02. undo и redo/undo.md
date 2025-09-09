@@ -23,8 +23,7 @@ Undo - это информация, которую Oracle сохраняет в 
   - alter table + move
   - export / import
   - create table as select
-  - dbms_redefinition  
-
+  - shrink
 
 ### Случай 2. snapshot too old
 
