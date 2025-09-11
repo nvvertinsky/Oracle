@@ -44,6 +44,5 @@ select * from perfstat.stats$snapshot;  # Выбрать необходимые 
 
 
 ### Самое интересное 
-  - В основном отчете есть SQL ordered by CPU. Это SQL которые заняли больше всего времени.
-  - Время (в секундах) за выполнение одно SQL указано в CPU per Exec (s)
+  - В отчете есть SQL ordered by Elapsed Time. Это SQL которые долго выполняются.
 
