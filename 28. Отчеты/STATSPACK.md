@@ -43,6 +43,6 @@ select * from perfstat.stats$snapshot;  # Выбрать необходимые 
 
 
 
-### Самое интересное 
-  - В отчете есть SQL ordered by Elapsed Time. Это SQL которые долго выполняются.
+### Самое интересное в отчете
+  - SQL ordered by Elapsed Time. Это SQL которые долго выполняются.
 
