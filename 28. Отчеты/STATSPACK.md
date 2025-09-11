@@ -44,5 +44,8 @@ select * from perfstat.stats$snapshot;  # Выбрать необходимые 
 
 
 ### Самое интересное в отчете
-  - SQL ordered by Elapsed Time. Это SQL которые долго выполняются.
+  - SQL ordered by Elapsed 
+  - Buffer Hit
+  - Library Hit
+  - Soft Parse
 
