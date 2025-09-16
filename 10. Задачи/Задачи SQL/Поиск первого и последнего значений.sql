@@ -16,22 +16,6 @@ USDRUB 2006-03-04 78.99
 EURRUB 2005-02-03 65.10
 
 */
-
-
-
-select t.name
-      ,min(ddate) keep(dense_rank first order by ddate desc nulls last) ddate
-      ,min(rate) keep(dense_rank first order by ddate desc nulls last) rate
-  from FxRates t
- group by t.name;
-
--- Запрос можно переписать на такой:
-
-select t.name
-      ,min(ddate) keep(dense_rank last order by ddate asc nulls first) ddate
-      ,min(rate) keep(dense_rank last order by ddate asc nulls first) rate
-  from FxRates t
- group by t.name;
  
  
  
