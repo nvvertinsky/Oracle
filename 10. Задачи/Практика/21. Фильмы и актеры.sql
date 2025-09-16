@@ -7,3 +7,9 @@ with fm as (select 'Мистер и миссис Смит' film, '1' actor from 
             select 'Бесславные ублюдки' film, '1' actor from dual
             union all
             select 'Игра на понижение' film, '2' actor from dual )
+
+select film
+  from fm
+ group by film
+having sum(case actor when 1 then 1 else 0 end) > 0
+   and sum(case actor when 2 then 1 else 0 end) > 0
