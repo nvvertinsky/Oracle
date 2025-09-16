@@ -31,23 +31,4 @@ a   b
 3   3
 4   4
 
--- 1. Выводим различающиеся строки.
--- 
-
-select *
-  from (select row_number() over (order by t10.a, t10.b) row_num,
-               t10.a, 
-               t10.b
-          from t10
-         order by t10.a, 
-                  t10.b) t1,
-       (select row_number() over (order by t20.a, t20.b) row_num,
-               t20.a, 
-               t20.b
-          from t20
-         order by t20.a, 
-                  t20.b) t2
- where t1.row_num = t2.row_num
-   and (t1.a != t2.a or t1.b != t2.b)
-
 
