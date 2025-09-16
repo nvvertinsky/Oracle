@@ -23,8 +23,3 @@ with t as (select 1 id from dual
            union all 
            select 12 from dual),
     t2 as (select level from dual connect by level <= 12)
-select *
-  from t2
- minus  
-select *
-  from t
