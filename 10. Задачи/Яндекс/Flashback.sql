@@ -1,3 +1,0 @@
-/*Рассказать про Flashback. Какие нужны права. Написать запрос с просмотром данных на 1 час назад.*/
-
-grant flashback any table to nvvertinskiy;
