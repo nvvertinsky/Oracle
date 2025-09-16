@@ -16,9 +16,3 @@ begin
 end;
 
 select nvl(2, f1) a, coalesce(2, f2) b from dual
-
-
-/*
-Вернет: 2, 2. 
-Выполняться: 3 сек
-*/
