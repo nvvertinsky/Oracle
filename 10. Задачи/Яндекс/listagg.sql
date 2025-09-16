@@ -17,7 +17,3 @@ create table tbl(dept varchar2(240), emp varchar2(240));
 insert into tbl values ('Подр1', 'Сотр1');
 insert into tbl values ('Подр2', 'Сотр2');
 insert into tbl values ('Подр2', 'Сотр3');
-
-select listagg(tbl.emp, ',') within group (order by tbl.emp desc)
-  from tbl 
- group by tbl.dept
