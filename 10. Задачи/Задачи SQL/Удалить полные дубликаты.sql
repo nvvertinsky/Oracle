@@ -10,17 +10,3 @@ insert into client_balance values (3, 'nikolay3', to_date('02.01.2024', 'dd.mm.y
 insert into client_balance values (3, 'nikolay3', to_date('02.01.2024', 'dd.mm.yyyy'), 300);
 insert into client_balance values (3, 'nikolay3', to_date('02.01.2024', 'dd.mm.yyyy'), 300);
 insert into client_balance values (4, 'nikolay4', to_date('03.01.2024', 'dd.mm.yyyy'), 400);
-
-
-
-
-
-
-delete
-  from client_balance cl
- where cl.rowid not in (select min(rowid)
-                          from client_balance cl
-                         group by cl.cl_id,
-                                  cl.cl_name,
-                                  cl.dt,
-                                  cl.balance) 
