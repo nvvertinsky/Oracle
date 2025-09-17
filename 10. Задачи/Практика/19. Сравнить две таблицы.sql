@@ -17,4 +17,10 @@ insert into t20 values (4, 4);
        
 
 
-
+select a, b, count(*) cnt
+  from t10
+ group by a, b
+ minus
+select a, b, count(*) cnt
+  from t20
+ group by a, b
