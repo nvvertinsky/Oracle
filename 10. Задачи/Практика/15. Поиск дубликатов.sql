@@ -19,8 +19,18 @@ select count(*),
 -- 02. Выбрать все дублирующиеся last_name и first_name
 -- 03. Выбрать все дубликаты first_name и last_name кроме первого
 
-select 
+
+select * 
+  from persn pp
+       (
+select min(id) minid
+       first_name,
+       last_name
   from persn p
  group by first_name,
           last_name
-having count(*) > 1
+having count(*) > 1 ) v
+
+where pp.first_name = v.first_name
+  and pp.last_name = v.last_name
+  and pp.id != v.minid
