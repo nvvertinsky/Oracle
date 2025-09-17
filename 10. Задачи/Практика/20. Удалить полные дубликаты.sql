@@ -13,13 +13,18 @@ insert into client_balance values (3, 'nikolay3', to_date('02.01.2024', 'dd.mm.y
 insert into client_balance values (4, 'nikolay4', to_date('03.01.2024', 'dd.mm.yyyy'), 400);
 
 
-select b.cl_id,
-       b.cl_name,
-       b.dt,
-       b.balance
-  from client_balance b
- group by b.cl_id,
-          b.cl_name,
-          b.dt,
-          b.balance
-having count(*) > 1
+select rowid
+  from client_balance bb
+ where (bb.cl_id,
+        bb.cl_name,
+        bb.dt,
+        bb.balance) in (select b.cl_id,
+                               b.cl_name,
+                               b.dt,
+                               b.balance
+                          from client_balance b
+                         group by b.cl_id,
+                                  b.cl_name,
+                                  b.dt,
+                                  b.balance
+                        having count(*) > 1)
