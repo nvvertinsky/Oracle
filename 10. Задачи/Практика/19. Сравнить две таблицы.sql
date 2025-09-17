@@ -15,20 +15,6 @@ insert into t20 values (3, 3);
 insert into t20 values (3, 3);
 insert into t20 values (4, 4);
        
-T1:
-a   b
-1   1
-2   2
-2   2
-3   3
-4   4
 
-T2:
-a   b
-1   1
-2   2
-3   3
-3   3
-4   4
 
 
