@@ -7,6 +7,14 @@ insert into persn values (4, 'Vladimir', 'Makarov');
 insert into persn values (5, 'Max', 'Slepchenkov');
 
 -- 01. Сколько всего дублей first_name и last_name
+
+select count(*),
+       first_name, 
+       last_name
+  from persn 
+ group by first_name, 
+          last_name
+
+
 -- 02. Выбрать все дублирующиеся last_name и first_name
 -- 03. Выбрать все дубликаты first_name и last_name кроме первого
--- 04. Удалить дубликаты, кроме первого
