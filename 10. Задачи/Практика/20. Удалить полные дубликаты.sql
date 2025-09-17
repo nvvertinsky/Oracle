@@ -13,7 +13,7 @@ insert into client_balance values (3, 'nikolay3', to_date('02.01.2024', 'dd.mm.y
 insert into client_balance values (4, 'nikolay4', to_date('03.01.2024', 'dd.mm.yyyy'), 400);
 
 
-delete rowid
+delete 
   from client_balance bb
  where bb.rowid not in (select min(rowid) r
                           from client_balance b
