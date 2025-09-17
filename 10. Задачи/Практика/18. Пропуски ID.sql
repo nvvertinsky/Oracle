@@ -4,3 +4,9 @@
 Необходимо найти все ID которые пропущены
 */
 
+select level
+  from dual
+connect by level <= 12
+ minus
+select id
+  from t
