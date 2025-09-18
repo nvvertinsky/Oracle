@@ -4,3 +4,7 @@
 01.10.2024
 14.10.2024
 
+
+select *
+  from dual
+connect by level <= '14.10.2024' - '01.10.2024' 
