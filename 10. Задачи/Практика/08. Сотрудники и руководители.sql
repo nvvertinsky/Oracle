@@ -12,3 +12,9 @@ select distinct mng.mng_id
 select count(*)
   from emp t
  group by t.mng_id
+
+select *
+  from emp e,
+       emp m
+ where e.mng_id = m.emp_id
+   and e.salary > m.salary
