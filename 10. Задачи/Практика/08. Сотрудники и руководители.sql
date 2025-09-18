@@ -1,3 +1,11 @@
 1. Какая средняя ЗП у руководителей?
 2. Сколько в среднем сотрудников в подчинении у руководителя?
 3. У кого из сотрудников ЗП больше чем у руководителя?
+
+select avg(v.salary)
+  from emp t
+ where t.emp_id in (
+select distinct mng.mng_id
+  from emp emp,
+       emp mng
+ where emp.emp_id = mng.mng_id)
