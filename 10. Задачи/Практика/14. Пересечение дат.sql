@@ -3,8 +3,8 @@
 
 create table t(
   id number(38) not null,
-  date_from date not null,
-  date_till date not null);
+  bg date not null,
+  fn date not null);
 
 insert into t values
 (1, '01.01.2022', '10.01.2022');
