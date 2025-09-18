@@ -1,20 +1,20 @@
-drop table tbl;
-create table tbl(id number(12), status varchar2(240));
+drop table t;
+create table t(id number(12), status varchar2(240));
 
-insert into tbl values (1, 'ERROR');
-insert into tbl values (2, 'ERROR');
-insert into tbl values (3, 'ERROR');
-insert into tbl values (4, 'OK');
-insert into tbl values (5, 'ERROR');
-insert into tbl values (6, 'OK');
-insert into tbl values (7, 'OK');
-insert into tbl values (8, 'ERROR');
-insert into tbl values (9, 'OK');
-insert into tbl values (10, 'OK');
+insert into t values (1, 'ERROR');
+insert into t values (2, 'ERROR');
+insert into t values (3, 'ERROR');
+insert into t values (4, 'OK');
+insert into t values (5, 'ERROR');
+insert into t values (6, 'OK');
+insert into t values (7, 'OK');
+insert into t values (8, 'ERROR');
+insert into t values (9, 'OK');
+insert into t values (10, 'OK');
 
 /*
-Выбрать две случайные записи из таблицы TBL со статусом ERROR
-Таблица TBL
+Выбрать две случайные записи из таблицы T со статусом ERROR
+
 ID STATUS
 --------------
 1  ERROR
@@ -28,3 +28,8 @@ ID STATUS
 9  OK
 10 OK
 */
+
+select * 
+  from t
+ where t.status = 'ERROR'
+ order by dbms_random.random
