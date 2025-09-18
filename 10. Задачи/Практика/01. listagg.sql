@@ -1,5 +1,5 @@
 /*
-Дана таблица TBL
+Дана таблица T
 DEPT    EMP
 ------------
 Подр1	Сотр1
@@ -13,7 +13,12 @@ DEPT    EMPS
 Подр2  Сотр3, Сотр2
 */
 
-create table tbl(dept varchar2(240), emp varchar2(240));
-insert into tbl values ('Подр1', 'Сотр1');
-insert into tbl values ('Подр2', 'Сотр2');
-insert into tbl values ('Подр2', 'Сотр3');
+create table t(dept varchar2(240), emp varchar2(240));
+insert into t values ('Подр1', 'Сотр1');
+insert into t values ('Подр2', 'Сотр2');
+insert into t values ('Подр2', 'Сотр3');
+
+select dept, 
+       listagg(emps, ',') within group (order by emps desc)
+  from t
+ group by dept
