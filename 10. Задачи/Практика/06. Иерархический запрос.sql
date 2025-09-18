@@ -18,7 +18,7 @@ insert into t values (2, 10, 'Подр_3');
 insert into t values (3, 10, 'Подр_2');
 
 
-select lpad(' ', name, )
+select lpad(' ', (level - 1) * 5) || name 
   from t
 connect by prior id = parent_id
   start with parent_id is null
