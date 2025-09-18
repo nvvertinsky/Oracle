@@ -7,3 +7,8 @@ select avg(v.salary)
  where t.emp_id in (
 select distinct mng.mng_id
   from emp mng)
+
+
+select count(*)
+  from emp t
+ group by t.mng_id
