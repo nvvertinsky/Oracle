@@ -15,3 +15,4 @@ insert into t values
 select *
   from t
  where t.id = p_id
+   and p_bg 
