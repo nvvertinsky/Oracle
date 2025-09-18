@@ -6,6 +6,4 @@ select avg(v.salary)
   from emp t
  where t.emp_id in (
 select distinct mng.mng_id
-  from emp emp,
-       emp mng
- where emp.emp_id = mng.mng_id)
+  from emp mng)
