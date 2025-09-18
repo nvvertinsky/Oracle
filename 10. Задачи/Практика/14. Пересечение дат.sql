@@ -10,3 +10,8 @@ insert into t values
 (1, '01.01.2022', '10.01.2022');
 insert into t values
 (1, '01.02.2022', '13.02.2022');
+
+
+select *
+  from t
+ where t.id = p_id
