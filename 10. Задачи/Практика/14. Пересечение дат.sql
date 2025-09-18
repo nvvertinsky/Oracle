@@ -15,4 +15,5 @@ insert into t values
 select *
   from t
  where t.id = p_id
-   and p_bg 
+   and p_bg < fn
+   and p_fn > bg
