@@ -5,6 +5,6 @@
 14.10.2024
 
 
-select *
+select '14.10.2024' + (level - 1)
   from dual
-connect by level <= '14.10.2024' - '01.10.2024' 
+connect by level <= ('14.10.2024' - 1) - ('01.10.2024' + 1) 
