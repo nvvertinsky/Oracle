@@ -12,6 +12,3 @@
 BASH$ACTIVE_SESSION_HISTORY   # "оперативные" данные;
 BASH$HIST_ACTIVE_SESS_HISTORY # "исторические" данные за 15 дней.
 ````
-
-### Ссылка
-https://marcusmonnig.wordpress.com/bash/
