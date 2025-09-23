@@ -29,7 +29,7 @@
   alter session set statistics_level = ALL;                                    # Сбор статистики по реальному плану запроса. Или указать хинт /*gather_plan_statistics*/
   select /*MY*/ * from employees;                                              # Выполняем запрос
   select * from v$sql t where lower(t.sql_text) like lower('%MY%');            # Находим его sql_id
-  select * from table(dbms_xplan.display_cursor('sql_id', null, 'ALLSTATS'));  # Получаем план запроса. Для получения A колонок, нужно дождаться полного выполнения запроса, без доп. фетча строк.
+  select * from table(dbms_xplan.display_cursor('sql_id', null, 'ALLSTATS'));  # Получаем план запроса
   ````
   
   3. v$sql_plan
